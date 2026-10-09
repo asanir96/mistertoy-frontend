@@ -1,0 +1,35 @@
+.toy-preview {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.7em;
+    margin-block-end: 1em;
+}
+
+.toy-preview img {
+    opacity: 0.7;
+    grid-column: 1;
+    aspect-ratio: 1/1;
+    width: 2rem;
+    height: auto;
+    /* max-width: 100%; */
+}
+
+.toy-preview h3 {
+    font-size: 1rem;
+    grid-column: 2;
+    text-align: center;
+}
+
+.toy-preview .toy-in-stock {
+    font-size: 0.8em;
+}
+
+.toy-preview .toy-in-stock.in-stock {
+    color: green
+}
+
+.toy-preview .toy-in-stock.out-of-stock {
+    color: red
+}

@@ -1,0 +1,9 @@
+/* BASE */
+
+@import 'base/reset.css';
+
+
+/* CMPS */
+
+@import 'cmps/ToyPreview.css';
+@import 'cmps/ToyList.css'

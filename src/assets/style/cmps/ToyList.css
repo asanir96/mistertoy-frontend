@@ -1,0 +1,16 @@
+.toy-list {
+    columns: 200px;
+    column-gap: 20px;
+}
+
+.toy-card {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    padding: 0.5em;
+    margin-block-end: 20px;
+    break-inside: avoid;
+}
+
+.toy-card button{
+    border-radius: 5px;
+    border: solid 1px rgba(0, 0, 0, 0.50);
+}

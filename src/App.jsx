@@ -10,7 +10,7 @@ import './App.css'
 
 import { store } from './store/store.js'
 import { AppHeader } from './cmps/AppHeader.jsx'
-
+import { ToyIndex } from './pages/ToyIndex.jsx'
 function App() {
   return (
     <Provider store={store}>
@@ -21,6 +21,7 @@ function App() {
             <Routes>
               {/* <Route element={<HomePage />} path="/" /> */}
               {/* <Route element={<AboutUs />} path="/about" /> */}
+              <Route element={<ToyIndex />} path="/toy" />
               {/* <Route element={<CarIndex />} path="/car" />
               <Route element={<CarEdit />} path="/car/edit" />
               <Route element={<CarEdit />} path="/car/edit/:carId" />
