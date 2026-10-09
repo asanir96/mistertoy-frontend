@@ -21,7 +21,7 @@ export function appReducer(state = initialState, cmd = {}) {
         case UPDATE_TOY:
             return { ...state, toys: [...state.toys, cmd.toy] }
         case REMOVE_TOY:
-            return { ...state, toys: state.toys.map(toy => toy._id !== cmd.toyId) }
+            return { ...state, toys: state.toys.filter(toy => toy._id !== cmd.toyId) }
         default:
             return state
     }
