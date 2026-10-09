@@ -9,7 +9,7 @@ import viteLogo from './assets/vite.svg'
 import './App.css'
 
 import { store } from './store/store.js'
-import { AppHeader } from './assets/cmps/AppHeader.jsx'
+import { AppHeader } from './cmps/AppHeader.jsx'
 
 function App() {
   return (
