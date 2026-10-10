@@ -1,9 +1,10 @@
 // import { store } from "../store";
 import { toyService } from "../../services/toy.service.local";
-import { UPDATE_TOY, ADD_TOY, SET_TOYS,REMOVE_TOY, store } from "../store";
+import { utilService } from "../../services/util.service";
+import { UPDATE_TOY, ADD_TOY, SET_TOYS, REMOVE_TOY, SET_QUERY_OPTIONS, SET_LABELS, store } from "../store";
 
-export function loadToys() {
-    return toyService.query()
+export function loadToys(queryOptions) {
+    return toyService.query(queryOptions)
         .then(toys => store.dispatch({ type: SET_TOYS, toys }))
         .catch(err => {
             console.log('Toy action --> could not load toys', err)
@@ -35,4 +36,21 @@ export function removeToy(toyId) {
             console.log('Toy action --> could not remove toy', err)
             throw err
         })
-}   
+}
+
+export function setQueryOptions(queryOptions) {
+    store.dispatch({ type: SET_QUERY_OPTIONS, queryOptions })
+}
+
+export function setLabels() {
+    return toyService.query()
+        .then(toys => {
+            const labels = utilService.getUniqueLabels(toys,'labels')
+            store.dispatch({ type: SET_LABELS, labels })
+        })
+        .catch(err => {
+            console.log('Toy action --> could not load toys', err)
+            throw err
+        })
+}
+

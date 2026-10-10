@@ -3,6 +3,9 @@ export function ToyPreview({ toy }) {
     return <div className="toy-preview">
         <img src='./src/assets/img/horse-toys-icon.png' alt="" />
         <h3>{toy.name}</h3>
+        <p className="toy-labels">{toy.labels?.map(label => {
+            return <span className={`label-${label}`}>{label}</span>
+        })}</p>
         <p className={`toy-in-stock ${isInStock ? 'in-stock' : 'out-of-stock'}`}>{isInStock ?
             <span>
                 <i className="fa-solid fa-circle-check"></i>

@@ -6,7 +6,8 @@ export const utilService = {
     saveToStorage,
     animateCSS,
     debounce,
-    getRandomLabel
+    getRandomLabel,
+    getUniqueLabels
 }
 
 function makeId(length = 6) {
@@ -83,4 +84,20 @@ function getRandomLabel(labels) {
     }
 
     return labelsToReturn
+}
+
+function getUniqueLabels(list,labelFieldName) {
+    if (!list || !list.length) return
+
+    const uniqueLabels = []
+    list.reduce((acc, obj) => {
+        if (!obj[labelFieldName]) return acc
+
+        obj[labelFieldName].forEach(label => {
+            if (!acc.includes(label)) acc.push(label)
+        })
+        return acc
+    }, uniqueLabels)
+
+    return uniqueLabels
 }

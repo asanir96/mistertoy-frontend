@@ -1,24 +1,46 @@
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
-import { loadToys,removeToy } from "../store/actions/toy";
+import { useSearchParams } from "react-router-dom";
+import { useEffectUpdate } from "../custom-hooks/useEffectUpdate";
+
+import { toyService } from "../services/toy.service.local";
+import { loadToys, removeToy, setQueryOptions, setLabels } from "../store/actions/toy";
 import { ToyList } from "../cmps/ToyList";
-import { showErrorMsg,showSuccessMsg } from "../services/event-bus.service";
+import { ToyFilter } from "../cmps/ToyFilter";
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service";
+import { utilService } from "../services/util.service";
+
 export function ToyIndex() {
     const toys = useSelector(storedState => storedState.toys)
+    const queryOptions = useSelector(storedState => storedState.queryOptions)
+    const labels = useSelector(storedState => storedState.labels)
 
     useEffect(() => {
-        loadToys()
+        setLabels()
     }, [])
 
-    function onRemoveToy(toyId){
+    useEffect(() => {
+        loadToys(queryOptions)
+    }, [queryOptions])
+
+    function onSetQueryOptions(queryOptions) {
+        setQueryOptions(queryOptions)
+    }
+
+    function onRemoveToy(toyId) {
         removeToy(toyId)
-        .then(()=>showSuccessMsg('Toy was remove successfully'))
-        .catch(()=>showErrorMsg('Unable to remove'))
+            .then(() => showSuccessMsg('Toy was remove successfully'))
+            .catch(() => showErrorMsg('Unable to remove'))
     }
 
     if (!toys || !toys.length) return <div>Loading...</div>
 
     return <main>
+        {labels && <ToyFilter
+            queryOptions={queryOptions}
+            onSetQueryOptions={onSetQueryOptions}
+            labels={labels}
+        />}
         <ToyList
             toys={toys}
             onRemoveToy={onRemoveToy} />

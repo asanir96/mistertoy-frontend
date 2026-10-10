@@ -33,3 +33,17 @@
 .toy-preview .toy-in-stock.out-of-stock {
     color: red
 }
+
+.toy-labels{
+    display: flex;
+    align-items: center;
+    gap:0.5em;
+
+}
+
+.toy-labels span{
+    font-size: 0.8em;
+    border:1px solid black;
+    padding:0.4em;
+    border-radius:15px
+}

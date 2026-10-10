@@ -15,7 +15,9 @@ export const toyService = {
     query,
     getById,
     save,
-    remove
+    remove,
+    getDefaultQueryOptions,
+    getQueryOptionsFromSearchParams
 }
 window.ts = toyService
 const STORAGE_KEY = 'toyDB'
@@ -23,8 +25,30 @@ const STORAGE_KEY = 'toyDB'
 _createToys()
 
 
-function query(filterBy = {}) {
+function query(queryOptions = { filterBy: {}, sort: {} }) {
+    const { filterBy, sort } = queryOptions
+
     return storageService.query(STORAGE_KEY)
+        .then(toys => {
+            let filteredToys = [...toys]
+
+            if (filterBy && filterBy.name) {
+                const regExp = new RegExp(filterBy.name, 'i')
+                filteredToys = filteredToys.filter(toy => regExp.test(toy.name))
+            }
+
+            if (filterBy && filterBy.inStock !== undefined) {
+                console.log('filterBy.inStock', filterBy.inStock)
+                filteredToys = filteredToys.filter(toy => toy.inStock === filterBy.inStock)
+            }
+
+            console.log('filterBy', filterBy)
+            if (filterBy.labels && filterBy.labels.length > 0) {
+                filteredToys = filteredToys.filter(toy => toy.labels?.some(label => filterBy.labels.includes(label)))
+            }
+
+            return filteredToys
+        })
 }
 
 function getById(toyId) {
@@ -40,7 +64,7 @@ function save(toyToSave) {
 
         toyToSave = {
             ...toyToSave,
-            imgUrl:'hardcoded-url-for-now',
+            imgUrl: 'hardcoded-url-for-now',
             createdAt: Date.now(),
             price: utilService.getRandomIntInclusive(10, 200),
             labels: utilService.getRandomLabel(labels),
@@ -50,8 +74,8 @@ function save(toyToSave) {
     }
 }
 
-function remove(toyId){
-    return storageService.remove(STORAGE_KEY,toyId)
+function remove(toyId) {
+    return storageService.remove(STORAGE_KEY, toyId)
 }
 
 
@@ -171,4 +195,39 @@ function _createToys() {
     ]
 
     utilService.saveToStorage(STORAGE_KEY, toys)
+}
+
+function getDefaultQueryOptions() {
+    return {
+        filterBy: {
+            name: '',
+            inStock: undefined,
+            labels: []
+        },
+        sort: {
+            sortBy: 'name',
+            sortDir: 1
+        }
+    }
+}
+
+function getQueryOptionsFromSearchParams(searchParams) {
+    const defaultQueryOptions = getDefaultQueryOptions()
+    const filterBy = {}
+
+    for (const field in defaultQueryOptions.filterBy) {
+        var value = searchParams.get(field)
+
+        if (value) {
+            filterBy[field] = field === 'inStock' ? value === 'true' : value
+        }
+    }
+
+
+    const sort = {
+        sortBy: searchParams.get('sortBy') || '',
+        sortDir: searchParams.get('sortDir') || 1
+    }
+
+    return { filterBy, sort }
 }
