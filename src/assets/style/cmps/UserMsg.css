@@ -1,0 +1,42 @@
+.user-msg {
+    width: fit-content;
+
+    border-style: solid;
+    border-width: 1px;
+    position: fixed;
+    top: 1em;
+    right: 1em;
+
+    padding: 0.5em;
+    border-radius: 7px;
+}
+
+.user-msg button{
+   border-radius: 50%;
+   left:-0.5em;
+   top:-0.5em;
+}
+
+.user-msg.success {
+
+    border-color: var(--green-clr-2);
+    background-color: var(--green-clr-1);
+    color: var(--green-clr-2);
+    ;
+}
+
+.user-msg.error {
+
+    border-color: var(--red-clr-2);
+    background-color: var(--red-clr-1);
+    color: var(--red-clr-2);
+}
+
+.user-msg.success button {
+    background-color: var(--green-clr-2);
+    color: var(--green-clr-1);
+}
+.user-msg.error button {
+    background-color: var(--red-clr-2);
+    color: var(--red-clr-1);
+}

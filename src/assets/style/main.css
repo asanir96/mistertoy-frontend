@@ -1,9 +1,14 @@
-/* BASE */
+/* SETUP */
+@import 'setup/vars.css';
 
+/* BASE */
 @import 'base/reset.css';
+@import 'base/base.css';
+@import 'base/helpers.css';
 
 
 /* CMPS */
+@import 'cmps/UserMsg.css';
 
 @import 'cmps/ToyPreview.css';
 @import 'cmps/ToyList.css'

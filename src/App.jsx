@@ -11,6 +11,8 @@ import './App.css'
 import { store } from './store/store.js'
 import { AppHeader } from './cmps/AppHeader.jsx'
 import { ToyIndex } from './pages/ToyIndex.jsx'
+import { AppFooter } from './cmps/AppFooter.jsx'
+
 function App() {
   return (
     <Provider store={store}>
@@ -29,7 +31,7 @@ function App() {
               <Route element={<UserDetails />} path="/user/:userId" /> */}
             </Routes>
           </main>
-          {/* <AppFooter /> */}
+          <AppFooter />
         </section>
       </Router>
     </Provider>
