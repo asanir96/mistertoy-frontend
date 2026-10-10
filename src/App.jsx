@@ -10,7 +10,10 @@ import './App.css'
 
 import { store } from './store/store.js'
 import { AppHeader } from './cmps/AppHeader.jsx'
+
 import { ToyIndex } from './pages/ToyIndex.jsx'
+import { ToyDetails } from './pages/ToyDetails.jsx'
+
 import { AppFooter } from './cmps/AppFooter.jsx'
 
 function App() {
@@ -24,6 +27,7 @@ function App() {
               {/* <Route element={<HomePage />} path="/" /> */}
               {/* <Route element={<AboutUs />} path="/about" /> */}
               <Route element={<ToyIndex />} path="/toy" />
+                <Route element={<ToyDetails />} path="/toy/:toyId" />
               {/* <Route element={<CarIndex />} path="/car" />
               <Route element={<CarEdit />} path="/car/edit" />
               <Route element={<CarEdit />} path="/car/edit/:carId" />

@@ -5,11 +5,11 @@ export function ToyPreview({ toy }) {
         <h3>{toy.name}</h3>
         <p className={`toy-in-stock ${isInStock ? 'in-stock' : 'out-of-stock'}`}>{isInStock ?
             <span>
-                <i class="fa-solid fa-circle-check"></i>
+                <i className="fa-solid fa-circle-check"></i>
                 In stock
             </span> :
             <span>
-                <i class="fa-solid fa-circle-xmark"></i>                Out of stock
+                <i className="fa-solid fa-circle-xmark"></i>                Out of stock
             </span>}</p>
         <p>Price: <span>${toy.price.toLocaleString()}</span></p>
     </div>

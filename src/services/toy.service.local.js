@@ -63,7 +63,7 @@ function _createToys() {
         {
             _id: 't101',
             name: 'Talking Doll',
-            imgUrl: 'hardcoded-url-for-now',
+            imgUrl: '../assets/img/horse-toys-icon.png',
             price: 123,
             labels: ['Doll', 'Battery Powered', 'Baby'],
             createdAt: 1631031801011,

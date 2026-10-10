@@ -1,14 +1,26 @@
 import { ToyPreview } from "./ToyPreview"
+import { Link, useNavigate } from 'react-router-dom'
 
 export function ToyList({ toys, onRemoveToy }) {
+    const navigate = useNavigate()
+
+    function onCardClick(toyId,ev) {
+        const target = ev.target
+        
+        if (target.className==='remove-btn'){
+            onRemoveToy(toyId, ev)
+        } else{
+            navigate(`/toy/${toyId}`)
+        }
+    }
 
     return <section>
         <ul className="toy-list">
             {toys.map(toy => {
                 return <li key={`list-item-${toy._id}`}>
-                    <div key={`toy-card-${toy._id}`} className="toy-card">
-                        <ToyPreview toy={toy}/>
-                        <button onClick={() => onRemoveToy(toy._id)}>Remove</button>
+                    <div onClick={ev => onCardClick(toy._id, ev)} key={`toy-card-${toy._id}`} className="toy-card">
+                        <ToyPreview toy={toy} />
+                        <button className = "remove-btn">Remove</button>
                     </div>
                 </li>
             })}

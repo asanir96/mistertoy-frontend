@@ -8,9 +8,15 @@
     padding: 0.5em;
     margin-block-end: 20px;
     break-inside: avoid;
+    transition: 0.2s;
 }
 
-.toy-card button{
+.toy-card:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.30);
+    cursor: pointer;
+}
+
+.toy-card button {
     border-radius: 5px;
     border: solid 1px rgba(0, 0, 0, 0.50);
 }
