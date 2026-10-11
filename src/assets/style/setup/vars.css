@@ -1,7 +1,10 @@
-:root{
-    --green-clr-1:rgb(179, 242, 179);
-    --green-clr-2:green;
+:root {
+    --green-clr-1: rgb(179, 242, 179);
+    --green-clr-2: green;
 
-    --red-clr-1:rgb(247, 144, 144);
-    --red-clr-2:rgb(159, 4, 4);
+    --red-clr-1: rgb(247, 144, 144);
+    --red-clr-2: rgb(159, 4, 4);
+
+    --box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
 }

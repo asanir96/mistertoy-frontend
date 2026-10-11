@@ -4,7 +4,7 @@
 }
 
 .toy-card {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    box-shadow:var(--box-shadow);
     padding: 0.5em;
     margin-block-end: 20px;
     break-inside: avoid;
