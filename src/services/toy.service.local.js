@@ -28,7 +28,7 @@ _createToys()
 
 function query(queryOptions = { filterBy: {}, sort: {} }) {
     const { filterBy, sort } = queryOptions
-
+    console.log('filterBy',filterBy)
     return storageService.query(STORAGE_KEY)
         .then(toys => {
             let filteredToys = [...toys]
@@ -43,10 +43,11 @@ function query(queryOptions = { filterBy: {}, sort: {} }) {
                 filteredToys = filteredToys.filter(toy => toy.inStock === filterBy.inStock)
             }
 
-            console.log('filterBy', filterBy)
+            console.log('filteredToys',filteredToys)
             if (filterBy.labels && filterBy.labels.length > 0) {
                 filteredToys = filteredToys.filter(toy => toy.labels?.some(label => filterBy.labels.includes(label)))
             }
+            console.log('filteredToys',filteredToys)
 
             return filteredToys
         })
@@ -235,6 +236,7 @@ function getEmptyToy() {
     return {
         name: '',
         imgUrl: 'hardcoded-url-for-now',
+        inStock:false,
         price: 0
     }
 }

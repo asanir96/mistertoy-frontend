@@ -10,7 +10,7 @@ export function ToyEdit() {
     const [toyToEdtit, setToyToEdit] = useState(null)
     const params = useParams()
     const navigate = useNavigate()
-
+    console.log('toyToEdtit',toyToEdtit)
     useEffect(() => {
         if (params.toyId) {
             toyService.getById(params.toyId)
@@ -25,6 +25,8 @@ export function ToyEdit() {
 
         if (type === 'number') {
             value = +value
+        } else if (type === 'checkbox') {
+            value = target.checked 
         }
 
         setToyToEdit(prev => ({ ...prev, [field]: value }))
@@ -32,7 +34,6 @@ export function ToyEdit() {
 
     function onSaveEdit(ev) {
         ev.preventDefault()
-        console.log('toyToEdit', toyToEdtit)
         saveToy(toyToEdtit)
             .then(toy => {
                 showSuccessMsg('Toy saved!')
@@ -47,9 +48,9 @@ export function ToyEdit() {
 
     if (!toyToEdtit) return <div>Loading...</div>
 
-    return <section>
-        <h3>Edit a toy</h3>
-        <form className="toy-edit"
+    return <section className="toy-edit">
+        <h3>{`${toyToEdtit._id ? 'Edit' : 'Add'} a toy`}</h3>
+        <form
             onSubmit={onSaveEdit}>
             <label htmlFor="name">Toy Name:</label>
             <input
