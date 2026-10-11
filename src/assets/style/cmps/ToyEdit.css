@@ -1,17 +1,24 @@
-.toy-edit{
-    width:400px;
-    padding:20px;
+.toy-edit {
     box-shadow: var(--box-shadow);
+    width: 400px;
+    padding: 20px;
     margin: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap:10px;
+}
+.toy-edit h3{
+    text-align: center;
+    margin-block-end: 20px;
 }
 
-.toy-edit input{
+.toy-edit form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.toy-edit input {
     grid-column: 2;
 }
 
-.toy-edit label{
+.toy-edit label {
     grid-column: 1;
 }
