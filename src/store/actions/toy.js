@@ -17,7 +17,7 @@ export function saveToy(toyToSave) {
 
     return toyService.save(toyToSave)
         .then(savedToy => {
-            store.dispatch({ type: action, savedToy })
+            store.dispatch({ type: action, toy:savedToy })
             return savedToy
         })
         .catch(err => {
