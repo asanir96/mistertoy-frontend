@@ -10,10 +10,13 @@ export const SET_QUERY_OPTIONS = 'SET_QUERY_OPTIONS'
 
 export const SET_LABELS = 'SET_LABELS'
 
+export const SET_ISLOADING = 'SET_ISLOADING'
+
 const initialState = {
     queryOptions: toyService.getDefaultQueryOptions(),
     toys: [],
-    labels: null
+    labels: null,
+    isLoading: false
 }
 
 export function appReducer(state = initialState, cmd = {}) {
@@ -33,6 +36,8 @@ export function appReducer(state = initialState, cmd = {}) {
             return { ...state, queryOptions: cmd.queryOptions }
         case SET_LABELS:
             return { ...state, labels: cmd.labels }
+        case SET_ISLOADING:
+            return { ...state, isLoading:cmd.isLoading }
         default:
             return state
     }

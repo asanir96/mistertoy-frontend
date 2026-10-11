@@ -15,6 +15,7 @@ export function ToyList({ toys, onRemoveToy }) {
             navigate(`/toy/${toyId}`)
         }
     }
+    if (!toys.length) return <div>No matching toys...</div>
     
     return <section>
         <ul className="toy-list">

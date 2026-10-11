@@ -10,7 +10,7 @@ export function ToyEdit() {
     const [toyToEdtit, setToyToEdit] = useState(null)
     const params = useParams()
     const navigate = useNavigate()
-    console.log('toyToEdtit',toyToEdtit)
+
     useEffect(() => {
         if (params.toyId) {
             toyService.getById(params.toyId)
