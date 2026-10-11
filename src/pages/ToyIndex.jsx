@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams,Link } from "react-router-dom";
 import { useEffectUpdate } from "../custom-hooks/useEffectUpdate";
 
 import { toyService } from "../services/toy.service.local";
@@ -41,6 +41,8 @@ export function ToyIndex() {
             onSetQueryOptions={onSetQueryOptions}
             labels={labels}
         />}
+        <Link to="/toy/edit">
+        <button>Add toy</button></Link>
         <ToyList
             toys={toys}
             onRemoveToy={onRemoveToy} />

@@ -17,7 +17,8 @@ export const toyService = {
     save,
     remove,
     getDefaultQueryOptions,
-    getQueryOptionsFromSearchParams
+    getQueryOptionsFromSearchParams,
+    getEmptyToy
 }
 window.ts = toyService
 const STORAGE_KEY = 'toyDB'
@@ -230,4 +231,12 @@ function getQueryOptionsFromSearchParams(searchParams) {
     }
 
     return { filterBy, sort }
+}
+
+function getEmptyToy() {
+    return {
+        name: '',
+        imgUrl: 'hardcoded-url-for-now',
+        price: 0
+    }
 }

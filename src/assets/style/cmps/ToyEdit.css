@@ -1,0 +1,17 @@
+.toy-edit{
+    width:400px;
+    padding:20px;
+    box-shadow: var(--box-shadow);
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:10px;
+}
+
+.toy-edit input{
+    grid-column: 2;
+}
+
+.toy-edit label{
+    grid-column: 1;
+}
