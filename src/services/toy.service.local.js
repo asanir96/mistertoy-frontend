@@ -67,9 +67,7 @@ function save(toyToSave) {
             ...toyToSave,
             imgUrl: 'hardcoded-url-for-now',
             createdAt: Date.now(),
-            price: utilService.getRandomIntInclusive(10, 200),
             labels: utilService.getRandomLabel(labels),
-            inStock: false
         }
         return storageService.post(STORAGE_KEY, toyToSave)
     }
