@@ -12,11 +12,11 @@ export function LabelDropdown({ labels, filterBy, handleChange }) {
         handleChange(ev)
     }
 
-    return <div className='label-multiselect position-relative'>
-        <fieldset>
-            <button onClick={onExpandDropdown}>
+    return <div className='label-multiselect position-relative' >
+        <fieldset onClick={onExpandDropdown}>
+            <span >
                 {isOpen ? '▲' : '▼'}
-            </button>
+            </span>
             <span>
                 {`${filterBy.labels && filterBy.labels.length} selected`}
             </span>
