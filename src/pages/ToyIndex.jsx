@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { useEffectUpdate } from "../custom-hooks/useEffectUpdate";
 
-import { toyService } from "../services/toy.service.local";
 import { loadToys, removeToy, setQueryOptions, setLabels } from "../store/actions/toy";
 import { ToyList } from "../cmps/ToyList";
 import { ToyFilter } from "../cmps/ToyFilter";

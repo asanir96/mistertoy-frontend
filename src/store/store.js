@@ -1,5 +1,5 @@
 import { createStore } from 'redux'
-import { toyService } from '../services/toy.service.local'
+import { toyService } from '../services/toy.service'
 
 export const SET_TOYS = 'SET_TOYS'
 export const ADD_TOY = 'ADD_TOY'

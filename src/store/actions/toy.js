@@ -1,5 +1,5 @@
 // import { store } from "../store";
-import { toyService } from "../../services/toy.service.local";
+import { toyService } from "../../services/toy.service";
 import { utilService } from "../../services/util.service";
 import { UPDATE_TOY, ADD_TOY, SET_TOYS, REMOVE_TOY, SET_QUERY_OPTIONS, SET_LABELS, SET_ISLOADING, store } from "../store";
 
@@ -55,6 +55,7 @@ export function setQueryOptions(queryOptions) {
 export function setLabels() {
     return toyService.query()
         .then(toys => {
+            console.log('toys',toys)
             const labels = utilService.getUniqueLabels(toys, 'labels')
             store.dispatch({ type: SET_LABELS, labels })
         })

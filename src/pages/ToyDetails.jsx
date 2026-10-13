@@ -1,4 +1,4 @@
-import { toyService } from "../services/toy.service.local"
+import { toyService } from "../services/toy.service"
 import { useEffect, useState } from "react"
 import { Link, useParams } from 'react-router-dom'
 
