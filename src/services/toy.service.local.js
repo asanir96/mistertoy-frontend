@@ -28,7 +28,8 @@ _createToys()
 
 function query(queryOptions = { filterBy: {}, sort: {} }) {
     const { filterBy, sort } = queryOptions
-    console.log('filterBy',filterBy)
+    console.log('filterBy', filterBy)
+    console.log('sort', sort)
     return storageService.query(STORAGE_KEY)
         .then(toys => {
             let filteredToys = [...toys]
@@ -39,16 +40,16 @@ function query(queryOptions = { filterBy: {}, sort: {} }) {
             }
 
             if (filterBy && filterBy.inStock !== undefined) {
-                console.log('filterBy.inStock', filterBy.inStock)
                 filteredToys = filteredToys.filter(toy => toy.inStock === filterBy.inStock)
             }
 
-            console.log('filteredToys',filteredToys)
             if (filterBy.labels && filterBy.labels.length > 0) {
                 filteredToys = filteredToys.filter(toy => toy.labels?.some(label => filterBy.labels.includes(label)))
             }
-            console.log('filteredToys',filteredToys)
 
+            if (sort) filteredToys = _getSortedToys(filteredToys, sort)
+
+            console.log('filteredToys', filteredToys)
             return filteredToys
         })
 }
@@ -236,7 +237,26 @@ function getEmptyToy() {
     return {
         name: '',
         imgUrl: 'hardcoded-url-for-now',
-        inStock:false,
+        inStock: false,
         price: 0
     }
+}
+
+function _getSortedToys(toys, sort) {
+    let sortedToys = [...toys]
+
+    switch (sort.sortBy) {
+        case 'name':
+            sortedToys = toys.sort((toy1, toy2) => toy1.name.localeCompare(toy2.name) * sort.sortDir)
+            break
+        case 'price':
+            sortedToys = toys.sort((toy1, toy2) => (toy1.price - toy2.price)* sort.sortDir) 
+            break
+        case 'created':
+            sortedToys = toys.sort((toy1, toy2) => (toy1.createdAt - toy2.createdAt) * sort.sortDir)
+            break
+    }
+
+
+    return sortedToys
 }

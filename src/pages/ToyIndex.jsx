@@ -7,6 +7,7 @@ import { toyService } from "../services/toy.service.local";
 import { loadToys, removeToy, setQueryOptions, setLabels } from "../store/actions/toy";
 import { ToyList } from "../cmps/ToyList";
 import { ToyFilter } from "../cmps/ToyFilter";
+import { ToySort } from "../cmps/ToySort";
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service";
 import { utilService } from "../services/util.service";
 
@@ -42,7 +43,13 @@ export function ToyIndex() {
             onSetQueryOptions={onSetQueryOptions}
             labels={labels}
         />}
-        <Link to="/toy/edit">
+
+        <ToySort
+            queryOptions={queryOptions}
+            onSetQueryOptions={onSetQueryOptions} />
+        <Link
+
+            to="/toy/edit">
             <button className="add-btn">Add toy</button></Link>
 
         {isLoading ?
