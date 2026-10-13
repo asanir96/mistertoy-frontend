@@ -1,0 +1,18 @@
+.add-btn{
+    border-radius:5px;
+    border:solid 1px black;
+    box-shadow: var(--box-shadow);
+    display:grid;
+    align-self: center;
+    justify-self: start;
+}
+
+a:has(.add-btn){
+    width: fit-content;
+    grid-row:2;
+
+}
+.loader{
+    display: flex;
+    justify-self: center;
+}

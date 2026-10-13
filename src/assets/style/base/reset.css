@@ -4,6 +4,7 @@ li {
 
 ul {
     list-style-type: none;
+    padding-inline-start: 0;
 }
 
 button {
@@ -11,6 +12,11 @@ button {
     background-color: white;
 }
 
-p,h3 {
+p,h3,h1 {
     margin-block: 0;
+}
+
+a{
+    text-decoration: none;
+    color: black;
 }

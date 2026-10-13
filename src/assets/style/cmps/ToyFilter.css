@@ -1,0 +1,20 @@
+.toy-filter{
+    margin-block-end: 1em;
+}
+.toy-filter form{
+    grid-template-columns: 5em 1fr;
+    justify-items: start;
+}
+
+.toy-filter label[for="out-of-stock"],
+input#out-of-stock{
+    grid-row: 2;
+}
+.toy-filter label[for="in-stock"],
+input#in-stock{
+    grid-row: 3;
+}
+
+.toy-filter label{
+    /* padding:1em; */
+}

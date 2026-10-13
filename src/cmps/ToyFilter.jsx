@@ -40,9 +40,9 @@ export function ToyFilter({ queryOptions, onSetQueryOptions, labels }) {
     }
 
     return (
-        <section className="car-filter full main-layout">
+        <section className="toy-filter full">
             <h2>Toy Filter</h2>
-            <form >
+            <form className='form-layout'>
                 <label htmlFor="vendor">Name:</label>
                 <input type="text"
                     id="name"

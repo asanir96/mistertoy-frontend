@@ -1,0 +1,32 @@
+.form-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.form-layout input {
+    grid-column: 2;
+}
+
+.form-layout label {
+    grid-column: 1;
+}
+
+.main-layout{
+    display: grid;
+    grid-template-columns: minmax(1rem,auto) 1fr minmax(1rem,auto);
+}
+
+.main-layout>*:not(.full){
+    grid-column: 2;
+}
+.main-layout>.full{
+    grid-column: 1/-1;
+}
+
+.header-layout{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    /* justify-content: end; */
+}

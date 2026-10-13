@@ -1,5 +1,11 @@
-.dropdown-options{
-    width:100%;
+.label-multiselect {
+    grid-column: 1/-1;
+    justify-self: stretch;
+}
+
+.dropdown-options {
+    left: 0;
+    right: 0;
     background-color: white;
     z-index: 11;
 }

@@ -37,7 +37,7 @@ export function ToyIndex() {
 
     // if (isLoading) return <div>Loading...</div>
 
-    return <main>
+    return <section className="toys main-layout full position-relative">
         {labels && <ToyFilter
             queryOptions={queryOptions}
             onSetQueryOptions={onSetQueryOptions}
@@ -53,12 +53,11 @@ export function ToyIndex() {
             <button className="add-btn">Add toy</button></Link>
 
         {isLoading ?
-            <div>Loading...</div>
-            :
+            <div className="loader position-absolute"></div> :
             <ToyList
                 toys={toys}
-                onRemoveToy={onRemoveToy} /> 
-            
+                onRemoveToy={onRemoveToy} />
+
         }
-    </main>
+    </section>
 }
