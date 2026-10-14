@@ -10,12 +10,13 @@ export const toyService = {
     remove,
     getEmptyToy,
     getDefaultQueryOptions,
+    getStats
 }
 
 function query(queryOptions = {}) {
-    const {sort,filterBy} = queryOptions
+    const { sort, filterBy } = queryOptions
 
-    return httpService.get(BASE_URL, {...sort,...filterBy})
+    return httpService.get(BASE_URL, { ...sort, ...filterBy })
 }
 
 function getById(toyId) {
@@ -57,4 +58,44 @@ function getDefaultQueryOptions() {
             sortDir: 1
         }
     }
+}
+
+function getStats() {
+    return httpService.get(BASE_URL+'stats')
+}
+
+// function _getToyCountByLabel() {
+//     return httpService.get(BASE_URL, { sort: {}, filterBy: {} })
+//         .then(toys => _getToyCountByLabel(toys))
+// }
+
+function _getAvgPriceByLabel(toys) {
+    const ToysByLabls = _getToyCountByLabel(toys)
+    const priceByLabel = _getPriceByLabel(toys)
+    const avgPriceByLabel = riceByLabel.map(label => label.price / ToysByLabls[label])
+}
+
+
+function _getToyCountByLabel(toys) {
+    return toys.reduce((acc, toy) => {
+
+        toy.labels?.forEach(label => {
+            if (label in acc) acc[label]++
+            else acc[label] = 1
+        })
+
+        return acc
+    }, {})
+}
+
+function _getPriceByLabel(toys) {
+    return toys.reduce((acc, toy) => {
+
+        toy.labels?.forEach(label => {
+            if (label in acc) acc[label] += toy.price
+            else acc[label] = toy.price
+        })
+
+        return acc
+    }, {})
 }

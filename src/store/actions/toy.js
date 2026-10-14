@@ -1,13 +1,16 @@
 // import { store } from "../store";
 import { toyService } from "../../services/toy.service";
 import { utilService } from "../../services/util.service";
-import { UPDATE_TOY, ADD_TOY, SET_TOYS, REMOVE_TOY, SET_QUERY_OPTIONS, SET_LABELS, SET_ISLOADING, store } from "../store";
+import { UPDATE_TOY, ADD_TOY, SET_TOYS, REMOVE_TOY, SET_QUERY_OPTIONS, SET_LABELS, SET_ISLOADING, SET_STATS, store } from "../store";
 
 export function loadToys(queryOptions) {
     store.dispatch({ type: SET_ISLOADING, isLoading: true })
 
     return toyService.query(queryOptions)
-        .then(toys => store.dispatch({ type: SET_TOYS, toys }))
+        .then(data => {
+            store.dispatch({ type: SET_TOYS, toys: data.toys })
+            // store.dispatch({ type: SET_STATS, stats: data.stats })
+        })
         .catch(err => {
             console.log('Toy action --> could not load toys', err)
             throw err
@@ -54,10 +57,21 @@ export function setQueryOptions(queryOptions) {
 
 export function setLabels() {
     return toyService.query()
-        .then(toys => {
-            console.log('toys',toys)
-            const labels = utilService.getUniqueLabels(toys, 'labels')
+        .then(data => {
+            const labels = utilService.getUniqueLabels(data.toys, 'labels')
             store.dispatch({ type: SET_LABELS, labels })
+        })
+        .catch(err => {
+            console.log('Toy action --> could not load toys', err)
+            throw err
+        })
+}
+
+export function loadStats() {
+    return toyService.getStats()
+        .then(stats => {
+            console.log('stats',stats)
+            store.dispatch({ type: SET_STATS, stats })
         })
         .catch(err => {
             console.log('Toy action --> could not load toys', err)

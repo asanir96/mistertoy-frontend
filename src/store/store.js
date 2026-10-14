@@ -5,6 +5,7 @@ export const SET_TOYS = 'SET_TOYS'
 export const ADD_TOY = 'ADD_TOY'
 export const UPDATE_TOY = 'UPDATE_TOY'
 export const REMOVE_TOY = 'REMOVE_TOY'
+export const SET_STATS = 'SET_STATS'
 
 export const SET_QUERY_OPTIONS = 'SET_QUERY_OPTIONS'
 
@@ -16,7 +17,8 @@ const initialState = {
     queryOptions: toyService.getDefaultQueryOptions(),
     toys: [],
     labels: null,
-    isLoading: false
+    isLoading: false,
+    stats: null
 }
 
 export function appReducer(state = initialState, cmd = {}) {
@@ -34,10 +36,15 @@ export function appReducer(state = initialState, cmd = {}) {
             return { ...state, toys: state.toys.filter(toy => toy._id !== cmd.toyId) }
         case SET_QUERY_OPTIONS:
             return { ...state, queryOptions: cmd.queryOptions }
+
         case SET_LABELS:
             return { ...state, labels: cmd.labels }
+
         case SET_ISLOADING:
-            return { ...state, isLoading:cmd.isLoading }
+            return { ...state, isLoading: cmd.isLoading }
+
+        case SET_STATS:
+            return { ...state, stats: cmd.stats }
         default:
             return state
     }

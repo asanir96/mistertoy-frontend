@@ -17,7 +17,7 @@ export function ToyList({ toys, onRemoveToy }) {
     }
     if (!toys.length) return <div className="empty-state-msg">No matching toys...</div>
     
-    return <section>
+    return <section className="toys">
         <ul className="toy-list">
             {toys.map(toy => {
                 return <li key={`list-item-${toy._id}`}>

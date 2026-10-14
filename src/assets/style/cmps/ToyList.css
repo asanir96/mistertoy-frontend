@@ -1,3 +1,6 @@
+.toys{
+    grid-row:3;
+}
 .toy-list {
     margin-inline: auto;
     margin-block-start: 10px;
