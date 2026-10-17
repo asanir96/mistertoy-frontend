@@ -2,19 +2,28 @@ import {
     Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale,
     LinearScale, BarElement, Title,
 } from 'chart.js';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Pie, Bar } from 'react-chartjs-2';
+import { loadStats } from '../store/actions/toy';
+import { useSelector } from 'react-redux';
 
 
 
+export function ToyDashbord() {
+    const stats = useSelector(storedState => storedState.stats)
+    
+    useEffect(() => {
+        loadStats()
+    },[])    
 
-export function ToyDashbord({ stats }) {
+
+    if (!stats) return  <div className="loader position-absolute"> </div>
+
     ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale,
         LinearScale,
         BarElement,
         Title,);
-    
-        console.log('stats',stats)
+
     const pieOptions = {
         layout: {
             padding: 20
@@ -68,7 +77,7 @@ export function ToyDashbord({ stats }) {
             },
             title: {
                 display: true,
-                text: 'Chart.js Bar Chart',
+                text: 'Avergae price by label',
             },
         },
     };
