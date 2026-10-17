@@ -13,7 +13,9 @@ export function ToyFilter({ queryOptions, onSetQueryOptions, labels }) {
     }, [filterByToEdit])
 
     function handleChange({ target }) {
+
         let { value, name: field, type } = target
+
         value = type === 'number' ? +value : value
 
         if (type === 'number') {
@@ -23,19 +25,6 @@ export function ToyFilter({ queryOptions, onSetQueryOptions, labels }) {
         }
 
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
-
-    }
-
-    function handleMultiSelectChange({ target }) {
-        let { value, name: field, type } = target
-
-        if (!filterByToEdit.labels) {
-            setFilterByToEdit((prevFilter) => ({ ...prevFilter, labels: [value] }))
-        } else if (filterByToEdit.labels?.includes(value)) {
-            setFilterByToEdit((prevFilter) => ({ ...prevFilter, labels: prevFilter.labels.filter(label => label !== value) }))
-        } else {
-            setFilterByToEdit((prevFilter) => ({ ...prevFilter, labels: prevFilter.labels ? [...prevFilter.labels, value] : [value] }))
-        }
 
     }
 
@@ -74,14 +63,7 @@ export function ToyFilter({ queryOptions, onSetQueryOptions, labels }) {
                 < LabelDropdown
                     labels={labels}
                     filterBy={filterByToEdit}
-                    handleChange={handleMultiSelectChange} />
-
-                {/* <label for="labels">Labels:</label>
-                <select name="labels" id="cars" multiple size={labels.length} onChange={handleChange}>
-                    {labels.map(label => {
-                        return <option key={`option-${label}`} value={label}>{label}</option>
-                    })}
-                </select> */}
+                    handleChange={handleChange} />
 
             </form>
         </section>

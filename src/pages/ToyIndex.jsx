@@ -22,7 +22,6 @@ export function ToyIndex() {
 
     // console.log('Object.keys(stats).length', Object.keys(stats).length)
 
-    console.log('labels', labels)
     // const toyCountsByLabel = useRef()
 
     useEffect(() => {
@@ -35,6 +34,7 @@ export function ToyIndex() {
     }, [queryOptions])
 
     function onSetQueryOptions(queryOptions) {
+        console.log('queryOptions',queryOptions)
         setQueryOptions(queryOptions)
     }
 
