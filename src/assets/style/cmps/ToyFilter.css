@@ -2,7 +2,7 @@
     margin-block-end: 1em;
 }
 .toy-filter form{
-    grid-template-columns: 5em 1fr;
+    grid-template-columns: min-content 1fr;
     justify-items: start;
 }
 
@@ -15,7 +15,13 @@ input#in-stock{
     grid-row: 3;
 }
 
-.toy-filter label{
-    /* padding:1em; */
+
+.MuiTextField-root{
+    grid-column: 1;
+    grid-row: 1;
 }
 
+.MuiRadioGroup-root{
+    grid-column: 2;
+    grid-row:1
+}

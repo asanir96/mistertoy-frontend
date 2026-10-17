@@ -1,6 +1,11 @@
 import { useState, useEffect, useRef } from 'react'
 import { utilService } from "../services/util.service.js"
 import { useEffectUpdate } from '../custom-hooks/useEffectUpdate.js'
+import TextField from '@mui/material/TextField';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
 
 import { LabelDropdown } from './LabelDropdown.jsx'
 export function ToyFilter({ queryOptions, onSetQueryOptions, labels }) {
@@ -32,16 +37,17 @@ export function ToyFilter({ queryOptions, onSetQueryOptions, labels }) {
         <section className="toy-filter full">
             <h2>Toy Filter</h2>
             <form className='form-layout'>
-                <label htmlFor="vendor">Name:</label>
-                <input type="text"
-                    id="name"
+
+                <TextField
+                    id="outlined-required"
+                    label="Search by name"
                     name="name"
-                    placeholder="By name"
+                    defaultValue="Enter text"
                     value={filterByToEdit.name}
                     onChange={handleChange}
                 />
 
-                <input
+                {/* <input
                     type="radio"
                     id="out-of-stock"
                     name="inStock"
@@ -57,8 +63,15 @@ export function ToyFilter({ queryOptions, onSetQueryOptions, labels }) {
                     value={true}
                     onChange={handleChange}
                     checked={filterByToEdit.inStock === true} />
-                <label for="in-stock">In stock</label>
+                <label for="in-stock">In stock</label> */}
 
+
+                <RadioGroup row  name="inStock"
+                    onChange={handleChange}
+                >
+                    <FormControlLabel value={true} control={<Radio />} label="In stock" />
+                    <FormControlLabel value={false} control={<Radio />} label="Out of stock" />
+                </RadioGroup>
 
                 < LabelDropdown
                     labels={labels}

@@ -41,8 +41,7 @@ export function LabelDropdown({ labels, filterBy, handleChange }) {
         handleChange(ev)
     }
 
-    return <div class="label-select">
-        <FormControl sx={{ m: 1, width: 300 }}>
+    return <FormControl sx={{ m: 1, width: 300,marginInline:0 }}>
             <InputLabel id="demo-multiple-chip-label">Label</InputLabel>
             <Select
                 labelId="demo-multiple-chip-label"
@@ -72,6 +71,5 @@ export function LabelDropdown({ labels, filterBy, handleChange }) {
                 ))}
             </Select>
         </FormControl>
-    </div>
 }
 
