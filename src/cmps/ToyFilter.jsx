@@ -42,7 +42,6 @@ export function ToyFilter({ queryOptions, onSetQueryOptions, labels }) {
                     id="outlined-required"
                     label="Search by name"
                     name="name"
-                    defaultValue="Enter text"
                     value={filterByToEdit.name}
                     onChange={handleChange}
                 />
