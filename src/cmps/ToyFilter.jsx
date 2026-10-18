@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from 'react'
 import { utilService } from "../services/util.service.js"
 import { useEffectUpdate } from '../custom-hooks/useEffectUpdate.js'
+
 import TextField from '@mui/material/TextField';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
 
 import { LabelDropdown } from './LabelDropdown.jsx'
 export function ToyFilter({ queryOptions, onSetQueryOptions, labels }) {
@@ -18,7 +18,6 @@ export function ToyFilter({ queryOptions, onSetQueryOptions, labels }) {
     }, [filterByToEdit])
 
     function handleChange({ target }) {
-
         let { value, name: field, type } = target
 
         value = type === 'number' ? +value : value
@@ -30,12 +29,12 @@ export function ToyFilter({ queryOptions, onSetQueryOptions, labels }) {
         }
 
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
-
     }
 
     return (
         <section className="toy-filter full">
             <h2>Toy Filter</h2>
+            
             <form className='form-layout'>
 
                 <TextField
@@ -46,35 +45,25 @@ export function ToyFilter({ queryOptions, onSetQueryOptions, labels }) {
                     onChange={handleChange}
                 />
 
-                {/* <input
-                    type="radio"
-                    id="out-of-stock"
+                <RadioGroup
+                    row
                     name="inStock"
-                    value={false}
-                    checked={filterByToEdit.inStock === false}
-                    onChange={handleChange} />
-                <label for="out-of-stock">Out of stock</label>
-
-                <input
-                    type="radio"
-                    id="in-stock"
-                    name="inStock"
-                    value={true}
-                    onChange={handleChange}
-                    checked={filterByToEdit.inStock === true} />
-                <label for="in-stock">In stock</label> */}
-
-
-                <RadioGroup row  name="inStock"
-                    onChange={handleChange}
-                >
-                    <FormControlLabel value={true} control={<Radio />} label="In stock" />
-                    <FormControlLabel value={false} control={<Radio />} label="Out of stock" />
+                    onChange={handleChange} >
+                    <FormControlLabel
+                        value={true}
+                        checked={`${filterByToEdit.inStock}` === 'true'}
+                        control={<Radio />}
+                        label="In stock" />
+                    <FormControlLabel
+                        value={false}
+                        checked={`${filterByToEdit.inStock}` === 'false'}
+                        control={<Radio />}
+                        label="Out of stock" />
                 </RadioGroup>
 
                 < LabelDropdown
                     labels={labels}
-                    filterBy={filterByToEdit}
+                    selectedLabels={filterByToEdit.labels}
                     handleChange={handleChange} />
 
             </form>
