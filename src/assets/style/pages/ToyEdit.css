@@ -10,8 +10,9 @@
 }
 
 .toy-edit form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    /* grid-template-columns: 1fr 1fr; */
     gap: 10px;
 }
 
@@ -21,4 +22,9 @@
 
 .toy-edit label {
     grid-column: 1;
+}
+
+.toy-edit{
+    display: flex;
+    flex-direction: column;
 }

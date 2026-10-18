@@ -34,7 +34,6 @@ export function ToyIndex() {
     }, [queryOptions])
 
     function onSetQueryOptions(queryOptions) {
-        console.log('queryOptions',queryOptions)
         setQueryOptions(queryOptions)
     }
 
