@@ -8,9 +8,11 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
+import FormHelperText from '@mui/material/FormHelperText';
 
 
-export function LabelDropdown({ labels, selectedLabels=[], handleChange }) {
+
+export function LabelDropdown({ labels, selectedLabels = [], handleChange, formik }) {
     const theme = useTheme();
     const [selectedLabelsToEdit, setSelectedLabelsToEdit] = useState(selectedLabels);
 
@@ -42,34 +44,45 @@ export function LabelDropdown({ labels, selectedLabels=[], handleChange }) {
     }
 
     function onRemoveLabel(value, ev) {
-        ev.preventDefault()
+        // ev.preventDefault()
         ev.target.value = selectedLabelsToEdit.filter(label => label !== value)
-        ev.target.name='labels'
+        ev.target.name = 'labels'
         setSelectedLabelsToEdit(prev => prev.filter(label => label !== value));
         handleChange(ev)
     }
 
     function hanedleClick(ev) {
+        ev.preventDefault()
         ev.stopPropagation()
     }
 
-    return <FormControl sx={{ m: 1, width: 300, marginInline: 0 }}>
+    return <FormControl
+        name='labels'
+        id="labels"
+        sx={{ m: 1, width: 300, marginInline: 0 }}
+        error={formik && formik.touched.labels && Boolean(formik?.errors.labels)}
+    >
         <InputLabel id="demo-multiple-chip-label">Label</InputLabel>
+
         <Select
             labelId="demo-multiple-chip-label"
-            id="demo-multiple-chip"
+            id="labels"
             name='labels'
             multiple
             value={selectedLabelsToEdit}
-
+            onBlur={ev => formik?.handleBlur(ev)}
             onChange={onOptionSelect}
             input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+
             renderValue={(selected) => (
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                     {selected.map((value) => (
                         <Chip key={value}
                             label={value}
-                            onMouseDown={ev => ev.stopPropagation()}
+                            onMouseDown={ev => {
+                                ev.stopPropagation()
+                                ev.preventDefault()
+                            }}
                             onClick={hanedleClick}
                             onDelete={ev => onRemoveLabel(value, ev)} />
                     ))}
@@ -79,6 +92,9 @@ export function LabelDropdown({ labels, selectedLabels=[], handleChange }) {
         >
             {labels.map((label) => (
                 <MenuItem
+                    onBlur={ev => formik?.handleBlur(ev)}
+                    name='labels'
+                    id='labels'
                     key={label}
                     value={label}
                     style={getStyles(label, selectedLabelsToEdit, theme)}
@@ -87,6 +103,9 @@ export function LabelDropdown({ labels, selectedLabels=[], handleChange }) {
                 </MenuItem>
             ))}
         </Select>
+        <FormHelperText >
+            {formik ? formik.touched.labels && formik.errors.labels : ``}
+        </FormHelperText>
     </FormControl>
 }
 

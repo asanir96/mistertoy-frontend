@@ -8,6 +8,9 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+
 import { LabelDropdown } from "../cmps/LabelDropdown";
 import { toyService } from "../services/toy.service"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
@@ -28,63 +31,76 @@ export function ToyEdit() {
     const [toyToEdtit, setToyToEdit] = useState(null)
     const params = useParams()
     const navigate = useNavigate()
-        
+
     useEffect(() => {
         if (params.toyId) {
             toyService.getById(params.toyId)
-                .then(toy => setToyToEdit(toy))
+                .then(toy => {
+                    setToyToEdit(toy)
+                    formik.setValues({
+                        name: toy.name,
+                        price: toy.price,
+                        labels: toy.labels,
+                        inStock: toy.inStock
+                    })
+                })
         } else {
             setToyToEdit(toyService.getEmptyToy)
         }
     }, [])
 
-    function handleChange(ev) {
-        const { target } = ev
+    const formik = useFormik({
+        initialValues: {
+            name: '',
+            price: 0,
+            labels: [],
+            inStock: false
+        },
+        validationSchema: Yup.object({
+            name: Yup.string().trim()
+                .min(0, 'Must be at least 1 character')
+                .required('Required'),
+            price: Yup.number()
+                .required('Required'),
+            labels: Yup.array()
+                .max(3, 'Choose up to 3 labels ')
+                .required(),
+            inStock: Yup.boolean()
+        }),
+        onSubmit: values => {
+            console.log('changedValues')
+            alert(JSON.stringify(values, null, 2));
+            saveToy({ ...toyToEdtit, ...values })
+                .then(toy => {
+                    showSuccessMsg('Toy saved!')
+                    navigate('/toy')
+                })
+                .catch(err => {
+                    console.log(err)
+                    showErrorMsg(`Could not save toy`)
+                })
+        },
+    });
 
-        if (!target) {
-            setToyToEdit(prev => ({ ...prev, price: ev }))
-            return
-        }
-
-        let { type, name: field, value } = target
-        if (type === 'number') {
-            value = +value
-        } else if (type === 'checkbox') {
-            value = target.checked
-        }
-
-        setToyToEdit(prev => ({ ...prev, [field]: value }))
-    }
-
-    function onSaveEdit(ev) {
-        ev.preventDefault()
-        saveToy(toyToEdtit)
-            .then(toy => {
-                showSuccessMsg('Toy saved!')
-                navigate('/toy')
-            })
-            .catch(err => {
-                console.log(err)
-                showErrorMsg(`Could not save toy`)
-            })
-
-    }
 
     if (!toyToEdtit) return <div>Loading...</div>
 
     return <section className="toy-edit">
         <h3>{`${toyToEdtit._id ? 'Edit' : 'Add'} a toy`}</h3>
         <form
-            onSubmit={onSaveEdit}>
+            onSubmit={formik.handleSubmit}>
 
             <TextField
                 className="edit-item"
-                id="outlined-required"
+                id="name"
                 label="Name"
                 name="name"
-                helperText={`${toyToEdtit._id ? 'Edit' : 'Add'} the toy name`}
-                value={toyToEdtit.name}
-                onChange={handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.name}
+                onChange={formik.handleChange}
+                error={formik.touched.name && Boolean(formik.errors.name)}
+                helperText={formik.touched.name && formik.errors.name || `${toyToEdtit._id ? 'Edit' : 'Add'} the toy name`}
+
             />
 
             <NumberField
@@ -93,25 +109,30 @@ export function ToyEdit() {
                 label="Price"
                 name="price"
                 min={0}
-                value={toyToEdtit.price}
-                onValueChange={handleChange} />
+                value={formik.values.price}
+                onValueChange={value => {
+                    formik.setFieldValue('price', value)
+                }}
+            />
 
             <LabelDropdown
                 className="edit-item"
                 labels={labels}
-                selectedLabels={toyToEdtit.labels}
-                handleChange={handleChange} />
+                selectedLabels={formik.values.labels}
+                handleChange={formik.handleChange}
+                formik={formik}
+            />
 
             <FormGroup>
                 <FormControlLabel
                     control={<Switch
                         name="inStock"
-                        checked={toyToEdtit.inStock}
-                        onChange={handleChange} />}
+                        checked={formik.values.inStock}
+                        onChange={formik.handleChange} />}
                     label="In Stock" />
             </FormGroup>
 
-            <input type="submit" value="Save" />
+            <input disabled={Object.keys(formik.errors).length > 0} type="submit" value="Save" />
         </form>
     </section>
 
