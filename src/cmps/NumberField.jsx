@@ -26,6 +26,7 @@ function NumberField({ id: idProp, label, error, size = 'medium', ...other }) {
   return (
     <BaseNumberField.Root
       {...other}
+      step='any'
       render={(props, state) => (
         <FormControl
           size={size}
@@ -49,6 +50,7 @@ function NumberField({ id: idProp, label, error, size = 'medium', ...other }) {
             label={label}
             inputRef={props.ref}
             value={state.inputValue}
+            step='any'
             onBlur={props.onBlur}
             onChange={props.onChange}
             onKeyUp={props.onKeyUp}
