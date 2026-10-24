@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams, Link, useNavigate } from "react-router-dom";
 import { useEffectUpdate } from "../custom-hooks/useEffectUpdate";
 
 import { loadToys, removeToy, setQueryOptions, setLabels, loadStats } from "../store/actions/toy";
@@ -18,6 +18,7 @@ export function ToyIndex() {
     const isLoading = useSelector(storedState => storedState.isLoading)
     const queryOptions = useSelector(storedState => storedState.queryOptions)
     const labels = useSelector(storedState => storedState.labels)
+    const navigate = useNavigate()
     // const stats = useSelector(storedState => storedState.stats)
 
     // console.log('Object.keys(stats).length', Object.keys(stats).length)
@@ -25,22 +26,43 @@ export function ToyIndex() {
     // const toyCountsByLabel = useRef()
 
     useEffect(() => {
-        setLabels()
-        // loadStats()
+        loadLabels()
     }, [])
 
     useEffect(() => {
-        loadToys(queryOptions)
+        load(queryOptions)
     }, [queryOptions])
+
+    async function load(queryOptions) {
+        try {
+            await loadToys(queryOptions)
+        } catch (err) {
+            showErrorMsg('Could not load toys')
+            navigate('/');
+        }
+    }
+    async function loadLabels() {
+        try {
+            await setLabels()
+        } catch (err) {
+            showErrorMsg('Could not load labels')
+        }
+    }
 
     function onSetQueryOptions(queryOptions) {
         setQueryOptions(queryOptions)
     }
 
-    function onRemoveToy(toyId) {
-        removeToy(toyId)
-            .then(() => showSuccessMsg('Toy was remove successfully'))
-            .catch(() => showErrorMsg('Unable to remove'))
+    async function onRemoveToy(toyId) {
+        try {
+            await removeToy(toyId)
+            showSuccessMsg('Toy was remove successfully')
+
+        } catch (err) {
+            showErrorMsg('Unable to remove')
+
+        }
+
     }
 
     // if (isLoading) return <div>Loading...</div>
