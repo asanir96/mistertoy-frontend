@@ -3,6 +3,8 @@ import {
     LinearScale, BarElement, Title,
 } from 'chart.js';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'
+import { showErrorMsg } from '../services/event-bus.service';
 import { Pie, Bar } from 'react-chartjs-2';
 import { loadStats } from '../store/actions/toy';
 import { useSelector } from 'react-redux';
@@ -11,13 +13,22 @@ import { useSelector } from 'react-redux';
 
 export function ToyDashbord() {
     const stats = useSelector(storedState => storedState.stats)
-    
+    const navigate = useNavigate()
+   
     useEffect(() => {
-        loadStats()
-    },[])    
+        load()
+    }, [])
 
+    async function load() {
+        try {
+            await loadStats()
+        } catch (err) {
+            showErrorMsg('Could not load stats')
+            navigate('/')
+        }
+    }
 
-    if (!stats) return  <div className="loader position-absolute"> </div>
+    if (!stats) return <div className="loader position-absolute"> </div>
 
     ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale,
         LinearScale,

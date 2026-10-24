@@ -61,13 +61,8 @@ function getDefaultQueryOptions() {
 }
 
 function getStats() {
-    return httpService.get(BASE_URL+'stats')
+    return httpService.get(BASE_URL + 'stats')
 }
-
-// function _getToyCountByLabel() {
-//     return httpService.get(BASE_URL, { sort: {}, filterBy: {} })
-//         .then(toys => _getToyCountByLabel(toys))
-// }
 
 function _getAvgPriceByLabel(toys) {
     const ToysByLabls = _getToyCountByLabel(toys)
