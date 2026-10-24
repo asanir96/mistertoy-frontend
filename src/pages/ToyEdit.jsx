@@ -33,21 +33,28 @@ export function ToyEdit() {
     const navigate = useNavigate()
 
     useEffect(() => {
+        loadToy()
+    }, [])
+
+    async function loadToy() {
         if (params.toyId) {
-            toyService.getById(params.toyId)
-                .then(toy => {
-                    setToyToEdit(toy)
-                    formik.setValues({
-                        name: toy.name,
-                        price: toy.price,
-                        labels: toy.labels,
-                        inStock: toy.inStock
-                    })
+            try {
+                const toy = await toyService.getById(params.toyId)
+                setToyToEdit(toy)
+                formik.setValues({
+                    name: toy.name,
+                    price: toy.price,
+                    labels: toy.labels,
+                    inStock: toy.inStock
                 })
+            } catch (err) {
+                showErrorMsg('Something went wrong')
+                navigate('/toy')
+            }
         } else {
             setToyToEdit(toyService.getEmptyToy)
         }
-    }, [])
+    }
 
     const formik = useFormik({
         initialValues: {
@@ -67,18 +74,17 @@ export function ToyEdit() {
                 .required(),
             inStock: Yup.boolean()
         }),
-        onSubmit: values => {
-            console.log('changedValues')
+        onSubmit: async values => {
             alert(JSON.stringify(values, null, 2));
-            saveToy({ ...toyToEdtit, ...values })
-                .then(toy => {
-                    showSuccessMsg('Toy saved!')
-                    navigate('/toy')
-                })
-                .catch(err => {
-                    console.log(err)
-                    showErrorMsg(`Could not save toy`)
-                })
+            try {
+                const toy = await saveToy({ ...toyToEdtit, ...values })
+                showSuccessMsg('Toy saved!')
+                navigate('/toy')
+                
+            } catch (err) {
+                console.log(err)
+                showErrorMsg(`Could not save toy`)
+            }
         },
     });
 
