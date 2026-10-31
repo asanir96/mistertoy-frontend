@@ -1,7 +1,7 @@
-// import { store } from "../store";
+import { store } from "../store.js";
 import { toyService } from "../../services/toy.service";
 import { utilService } from "../../services/util.service";
-import { UPDATE_TOY, ADD_TOY, SET_TOYS, REMOVE_TOY, SET_QUERY_OPTIONS, SET_LABELS, SET_ISLOADING, SET_STATS, store } from "../store";
+import { UPDATE_TOY, ADD_TOY, SET_TOYS, REMOVE_TOY, SET_QUERY_OPTIONS, SET_LABELS, SET_ISLOADING, SET_STATS } from "../reducers/toy.reducer";
 import { showErrorMsg } from "../../services/event-bus.service";
 
 export async function loadToys(queryOptions) {

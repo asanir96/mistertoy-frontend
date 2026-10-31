@@ -1,0 +1,51 @@
+import { toyService } from '../../services/toy.service'
+
+export const SET_TOYS = 'SET_TOYS'
+export const ADD_TOY = 'ADD_TOY'
+export const UPDATE_TOY = 'UPDATE_TOY'
+export const REMOVE_TOY = 'REMOVE_TOY'
+export const SET_STATS = 'SET_STATS'
+
+export const SET_QUERY_OPTIONS = 'SET_QUERY_OPTIONS'
+
+export const SET_LABELS = 'SET_LABELS'
+
+export const SET_ISLOADING = 'SET_ISLOADING'
+
+const initialState = {
+    queryOptions: toyService.getDefaultQueryOptions(),
+    toys: [],
+    labels: null,
+    isLoading: false,
+    stats: null
+}
+
+export function toyReducer(state = initialState, cmd = {}) {
+    switch (cmd.type) {
+        case SET_TOYS:
+            return { ...state, toys: cmd.toys }
+        case UPDATE_TOY:
+            return {
+                ...state,
+                toys: state.toys.map(toy => toy._id === cmd.toy._id ? cmd.toy : toy)
+            }
+        case ADD_TOY:
+            return { ...state, toys: [...state.toys, cmd.toy] }
+        case REMOVE_TOY:
+            return { ...state, toys: state.toys.filter(toy => toy._id !== cmd.toyId) }
+        case SET_QUERY_OPTIONS:
+            return { ...state, queryOptions: cmd.queryOptions }
+
+        case SET_LABELS:
+            return { ...state, labels: cmd.labels }
+
+        case SET_ISLOADING:
+            return { ...state, isLoading: cmd.isLoading }
+
+        case SET_STATS:
+            return { ...state, stats: cmd.stats }
+        default:
+            return state
+    }
+}
+

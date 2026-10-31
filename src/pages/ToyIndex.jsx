@@ -14,10 +14,11 @@ import { utilService } from "../services/util.service";
 import { toyService } from "../services/toy.service";
 
 export function ToyIndex() {
-    const toys = useSelector(storedState => storedState.toys)
-    const isLoading = useSelector(storedState => storedState.isLoading)
-    const queryOptions = useSelector(storedState => storedState.queryOptions)
-    const labels = useSelector(storedState => storedState.labels)
+    const toys = useSelector(storedState => storedState.toyModule.toys)
+    const isLoading = useSelector(storedState => storedState.toyModule.isLoading)
+    const queryOptions = useSelector(storedState => storedState.toyModule.queryOptions)
+    const labels = useSelector(storedState => storedState.toyModule.labels)
+    const user = useSelector(storedState=>storedState.authModule.user)
     const navigate = useNavigate()
     // const stats = useSelector(storedState => storedState.stats)
 

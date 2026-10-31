@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux';
 
 
 export function ToyDashbord() {
-    const stats = useSelector(storedState => storedState.stats)
+    const stats = useSelector(storedState => storedState.toyModule.stats)
     const navigate = useNavigate()
    
     useEffect(() => {
