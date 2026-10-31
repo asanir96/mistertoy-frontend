@@ -2,11 +2,8 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { Route, Routes } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
 import './App.css'
+import Divider from '@mui/material/Divider';
 
 import { store } from './store/store.js'
 import { AppHeader } from './cmps/AppHeader.jsx'
@@ -14,6 +11,7 @@ import { AppHeader } from './cmps/AppHeader.jsx'
 import { ToyIndex } from './pages/ToyIndex.jsx'
 import { ToyEdit } from './pages/ToyEdit.jsx'
 import { ToyDetails } from './pages/ToyDetails.jsx'
+import { Signup } from './pages/Signup.jsx'
 import { ToyDashbord } from './pages/ToyDashbord.jsx'
 import { AppFooter } from './cmps/AppFooter.jsx'
 
@@ -23,20 +21,15 @@ function App() {
       <Router>
         <section className="app main-layout">
           <AppHeader />
+          <Divider className='full'/>
           <main className='main-layout'>
             <Routes>
-              {/* <Route element={<HomePage />} path="/" /> */}
-              {/* <Route element={<AboutUs />} path="/about" /> */}
+              <Route element={<Signup />} path="/signup" />
               <Route element={<ToyIndex />} path="/toy" />
-              <Route element={<ToyDashbord />} path="/toy/dashbord" />
+              <Route element={<ToyDashbord />} path="/dashbord" />
               <Route element={<ToyEdit />} path="/toy/edit" />
               <Route element={<ToyEdit />} path="/toy/edit/:toyId" />
               <Route element={<ToyDetails />} path="/toy/:toyId" />
-              {/* <Route element={<CarIndex />} path="/car" />
-              <Route element={<CarEdit />} path="/car/edit" />
-              <Route element={<CarEdit />} path="/car/edit/:carId" />
-              <Route element={<CarDetails />} path="/car/:carId" />
-              <Route element={<UserDetails />} path="/user/:userId" /> */}
             </Routes>
           </main>
           <AppFooter />

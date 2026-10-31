@@ -1,17 +1,14 @@
 import { useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams, Link, useNavigate } from "react-router-dom";
-import { useEffectUpdate } from "../custom-hooks/useEffectUpdate";
-
+import Divider from '@mui/material/Divider';
+import { FloatingAddBtn } from "../cmps/FloatingAddBtn";
 import { loadToys, removeToy, setQueryOptions, setLabels, loadStats } from "../store/actions/toy";
 import { ToyList } from "../cmps/ToyList";
 import { ToyFilter } from "../cmps/ToyFilter";
 import { ToySort } from "../cmps/ToySort";
-import { ToyDashbord } from "./ToyDashbord";
 
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service";
-import { utilService } from "../services/util.service";
-import { toyService } from "../services/toy.service";
 
 export function ToyIndex() {
     const toys = useSelector(storedState => storedState.toyModule.toys)
@@ -20,11 +17,6 @@ export function ToyIndex() {
     const labels = useSelector(storedState => storedState.toyModule.labels)
     const user = useSelector(storedState=>storedState.authModule.user)
     const navigate = useNavigate()
-    // const stats = useSelector(storedState => storedState.stats)
-
-    // console.log('Object.keys(stats).length', Object.keys(stats).length)
-
-    // const toyCountsByLabel = useRef()
 
     useEffect(() => {
         loadLabels()
@@ -66,9 +58,9 @@ export function ToyIndex() {
 
     }
 
-    // if (isLoading) return <div>Loading...</div>
 
     return <section className="toys main-layout full position-relative">
+        <div className="sort-filter">
         {labels && <ToyFilter
             queryOptions={queryOptions}
             onSetQueryOptions={onSetQueryOptions}
@@ -78,10 +70,8 @@ export function ToyIndex() {
         <ToySort
             queryOptions={queryOptions}
             onSetQueryOptions={onSetQueryOptions} />
-        <Link
+        </div>
 
-            to="/toy/edit">
-            <button className="add-btn">Add toy</button></Link>
 
         {isLoading ?
             <div className="loader position-absolute"></div> :
@@ -89,7 +79,6 @@ export function ToyIndex() {
                 toys={toys}
                 onRemoveToy={onRemoveToy} />
         }
-
-        {/* {stats && Object.keys(stats).length && <ToyDashbord stats={stats} />} */}
+        {user && user.isAdmin && <FloatingAddBtn />}
     </section>
 }

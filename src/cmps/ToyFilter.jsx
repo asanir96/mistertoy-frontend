@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { utilService } from "../services/util.service.js"
 import { useEffectUpdate } from '../custom-hooks/useEffectUpdate.js'
+import Divider from '@mui/material/Divider';
 
 import TextField from '@mui/material/TextField';
 import Radio from '@mui/material/Radio';
@@ -33,7 +34,6 @@ export function ToyFilter({ queryOptions, onSetQueryOptions, labels }) {
 
     return (
         <section className="toy-filter full">
-            <h2>Toy Filter</h2>
             
             <form className='form-layout'>
 
@@ -67,6 +67,8 @@ export function ToyFilter({ queryOptions, onSetQueryOptions, labels }) {
                     handleChange={handleChange} />
 
             </form>
+                    <Divider className='full' />
+
         </section>
     )
 

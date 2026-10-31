@@ -10,9 +10,11 @@
 /* PAGES */
 @import 'pages/ToyEdit.css';
 @import 'pages/ToyIndex.css';
+@import 'pages/Signup.css';
 
 /* CMPS */
 @import 'cmps/UserMsg.css';
+@import 'cmps/UserMenu.css';
 @import 'cmps/AppHeader.css';
 
 @import 'cmps/ToyFilter.css';
