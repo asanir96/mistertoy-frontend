@@ -10,7 +10,8 @@ export const toyService = {
     remove,
     getEmptyToy,
     getDefaultQueryOptions,
-    getStats
+    getStats,
+    addMsg
 }
 
 function query(queryOptions = {}) {
@@ -35,6 +36,11 @@ function save(toy) {
         return httpService.post(BASE_URL, toy)
     }
 }
+
+function addMsg(msg,toyId){
+    return httpService.post(`${BASE_URL}${toyId}/msg`,msg)
+}
+
 
 function getEmptyToy() {
     return {

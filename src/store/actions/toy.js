@@ -42,6 +42,17 @@ export async function removeToy(toyId) {
     return removedToy
 }
 
+export async function addToyMsg(msg, toyId) {
+    try {
+        const updatedToy = await toyService.addMsg(msg, toyId)
+        store.dispatch({ type: UPDATE_TOY, toy: updatedToy })
+        return updatedToy
+    } catch (err) {
+        console.log('Toy action --> could not add toy message', err)
+        throw err
+    }
+}
+
 export function setQueryOptions(queryOptions) {
     store.dispatch({ type: SET_QUERY_OPTIONS, queryOptions })
 }
