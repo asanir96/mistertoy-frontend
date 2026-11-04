@@ -45,16 +45,16 @@ export function ToyDetails() {
 
             <InStockLabel inStock={toy.inStock} />
 
-            <div>Categories: {toy.labels.map(label => {
-                return <Chip label={label} sx={{marginInline:'0.25em'}} />
-            })}</div>
+            {toy.labels && <div>Categories: {toy.labels.map(label => {
+                return <Chip label={label} sx={{ marginInline: '0.25em' }} />
+            })}</div>}
         </section>
 
 
         <section className="toy-msgs">
             <h3>Toy Messages</h3>
             <ToyMsgs msgs={toy.msgs || []} />
-            {user && user.isAdmin && <AddMsg toy={toy}/>}
+            {user && user.isAdmin && <AddMsg toy={toy} />}
         </section>
     </section>
 
