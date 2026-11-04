@@ -11,11 +11,14 @@
 @import 'pages/ToyEdit.css';
 @import 'pages/ToyIndex.css';
 @import 'pages/Signup.css';
+@import 'pages/ToyDetails.css';
 
 /* CMPS */
 @import 'cmps/UserMsg.css';
 @import 'cmps/UserMenu.css';
 @import 'cmps/AppHeader.css';
+@import 'cmps/ToyMsgs.css';
+@import 'cmps/AddMsg.css';
 
 @import 'cmps/ToyFilter.css';
 @import 'cmps/ToySort.css';

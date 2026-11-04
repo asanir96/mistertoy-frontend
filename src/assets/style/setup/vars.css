@@ -6,5 +6,9 @@
     --red-clr-2: rgb(159, 4, 4);
 
     --box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    
+    --section-border-radius:10px;
+    --section-border-width:1px;
+    --section-border-color:rgba(0, 0, 0, 0.12);
 
 }

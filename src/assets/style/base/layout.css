@@ -30,3 +30,9 @@
     align-items: center;
     /* justify-content: end; */
 }
+
+.details-layout{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:10px
+}

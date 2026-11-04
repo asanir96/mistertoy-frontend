@@ -1,0 +1,43 @@
+.toy-details{
+    margin-block-start: 20px;
+    width: 100%;
+    
+}
+
+.toy-details img{
+        border:1px solid lightgray;
+    border-radius: var(--section-border-radius);
+    grid-column: 1;
+    width: 80%;
+    padding:0.5em;
+    justify-self: center;
+}
+
+.toy-details .details-info{
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    gap:1em;
+}
+
+.toy-details .toy-msgs{
+    grid-column: 1/-1;
+}
+
+.toy-details img{
+    border: var(--section-border-width) solid var(--section-border-color);
+    border-radius: var(--section-border-radius);
+}
+
+.toy-price{
+    font-size: 2em;
+    color:var(--green-clr-2)
+}
+
+.details-info h3{
+    font-size: 2em;
+}
+
+.details-info .in-stock-label{
+    font-size: 0.2em;
+}
