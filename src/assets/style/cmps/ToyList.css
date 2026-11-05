@@ -6,7 +6,7 @@
     margin-inline: auto;
     margin-block-start: 10px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     justify-content: center;
     gap: 20px;
     /* columns: 200px;
@@ -20,6 +20,7 @@
     /* margin-block-end: 20px; */
     break-inside: avoid;
     transition: 0.2s;
+    border-radius: var(--section-border-radius);
 }
 
 .toy-card:hover {
@@ -35,4 +36,9 @@
 .empty-state-msg {
     display: flex;
     justify-self: center;
+}
+
+.toy-actions{
+    display: flex;
+    justify-content: space-between;
 }
