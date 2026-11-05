@@ -6,14 +6,10 @@ export function ToyPreview({ toy }) {
         <p className="toy-labels">{toy.labels?.map(label => {
             return <span className={`label-${label}`}>{label}</span>
         })}</p>
-        <p className={`toy-in-stock ${isInStock ? 'in-stock' : 'out-of-stock'}`}>{isInStock ?
-            <span>
-                <i className="fa-solid fa-circle-check"></i>
-                In stock
-            </span> :
-            <span>
-                <i className="fa-solid fa-circle-xmark"></i>                Out of stock
-            </span>}</p>
-        <p>Price: <span>${toy.price.toLocaleString()}</span></p>
+        <InStockLabel inStock={toy.inStock} style={{
+            fontSize: '0.7em', padding: '0 0.5px', height: '2em', '& .MuiChip-icon': {
+                fontSize: '0.7rem',
+            }, borderRadius: '10px', height: '2em'
+        }} />
     </div>
 }

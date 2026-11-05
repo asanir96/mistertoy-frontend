@@ -43,7 +43,7 @@ export function ToyDetails() {
 
             <p className="toy-price"> <span>${toy.price.toLocaleString()}</span></p>
 
-            <InStockLabel inStock={toy.inStock} />
+            <InStockLabel inStock={toy.inStock} style={{ fontSize: '0.7em', padding: '0 1px' }} />
 
             {toy.labels && <div>Categories: {toy.labels.map(label => {
                 return <Chip label={label} sx={{ marginInline: '0.25em' }} />

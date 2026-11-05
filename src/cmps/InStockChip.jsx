@@ -2,29 +2,26 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import DoneIcon from '@mui/icons-material/Done';
 import BlockIcon from '@mui/icons-material/Block';
-export function InStockLabel({ inStock }) {
-    return (
-        <Stack direction="row" spacing={1}>
-            {inStock ? <Chip
-                sx={{
-                    fontSize: '0.7em',
-                    padding: '0 1px',
 
-                }}
+export function InStockLabel({ inStock, style }) {
+    return (
+        <Stack direction="row" spacing={1} className='in-stock'>
+            {inStock ? <Chip
+
+                sx={style}
                 size="small"
                 label="In stock"
                 icon={<DoneIcon />}
+                                    variant="outlined"
+
                 color='success'
             /> :
                 <Chip
+                    className='in-stock'
                     size="small"
-                    sx={{
-                        fontSize: '0.7em',
-                        padding: '0 1px',
-
-                    }}
+                    sx={style}
                     label="Out of stock"
-                    variant="filled"
+                    variant="outlined"
                     icon={<BlockIcon />}
                     color='error'
                 />}
