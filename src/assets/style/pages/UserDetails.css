@@ -1,0 +1,10 @@
+.user-details .toy-msgs{
+    grid-column: 1/3;
+}
+
+.user-info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:1em;
+}
