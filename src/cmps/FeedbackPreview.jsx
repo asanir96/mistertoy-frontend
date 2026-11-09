@@ -11,7 +11,7 @@ import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfi
 
 export function FeebackPreview({ feedback }) {
     const initials = feedback.by ? utilService.getUserInitials(feedback.by) : null
-
+    const titleField = feedback.by ? `${feedback.by.fullname ? 'by.fullname' : 'by.username'}` : 'toy.name'
     const customIcons = {
         1: {
             icon: <SentimentVeryDissatisfiedIcon
@@ -64,7 +64,7 @@ export function FeebackPreview({ feedback }) {
 
         {feedback.rating && customIcons[feedback.rating].icon}
 
-        <h3>{feedback.by?.fullname ? feedback.by.fullname : feedback.by.username}</h3>
+        <h3>{titleField.split('.').reduce((obj, key) => obj?.[key], feedback)}</h3>
 
         <div className='feedback-txt'>
             "{feedback.txt}"

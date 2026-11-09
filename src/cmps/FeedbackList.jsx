@@ -18,7 +18,7 @@ export function FeedbackList({ feedbacks, onRemoveFunc, isReviews }) {
                     variant="outlined">
 
                     <FeebackPreview feedback={feedback} />
-                    {user && user._id === feedback.by._id &&
+                    {user && user._id === feedback.by?._id &&
                         <button
                             className='feedback-delete-btn position-absolute'
                             onClick={isReviews ? () => onRemoveFunc(feedback._id) : () => onRemoveFunc(feedback.id)}>
