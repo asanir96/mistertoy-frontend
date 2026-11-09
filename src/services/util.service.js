@@ -8,7 +8,8 @@ export const utilService = {
     debounce,
     getRandomLabel,
     getUniqueLabels,
-    getTimeAgo
+    getTimeAgo,
+    getUserInitials
 }
 
 function makeId(length = 6) {
@@ -87,7 +88,7 @@ function getRandomLabel(labels) {
     return labelsToReturn
 }
 
-function getUniqueLabels(list,labelFieldName) {
+function getUniqueLabels(list, labelFieldName) {
     if (!list || !list.length) return
 
     const uniqueLabels = []
@@ -118,4 +119,12 @@ export function getTimeAgo(date) {
     if (diff < 31536000) return rtf.format(-Math.floor(diff / 2592000), 'month')
 
     return rtf.format(-Math.floor(diff / 31536000), 'year')
+}
+
+export function getUserInitials(user) {
+    if (user.fullname) {
+        return `${user?.fullname?.split(' ').at(0)[0]}${user.fullname.split(' ').at(1)[0]}`
+    }
+
+    return null
 }

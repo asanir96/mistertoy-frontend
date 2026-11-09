@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 
 import { logout, login } from '../store/actions/auth';
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service';
+import { utilService } from '../services/util.service.js';
 
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
@@ -54,7 +55,7 @@ export function UserMenu() {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
-    const initials = user ? `${user?.fullname?.split(' ').at(0)[0]}${user.fullname.split(' ').at(1)[0]}` : null
+    const initials = user ? utilService.getUserInitials(user) : null
     function handleClick(ev) {
         setAnchorEl(ev.currentTarget);
     }
