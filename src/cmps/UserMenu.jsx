@@ -81,6 +81,7 @@ export function UserMenu() {
         navigate('/signup')
     }
 
+
     return (
         <React.Fragment>
             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -89,11 +90,8 @@ export function UserMenu() {
                         onClick={handleClick}
                         size="small"
                         sx={{ ml: 2 }}
-                        // aria-controls={open ? 'account-menu' : undefined}
-                        // aria-haspopup="true"
-                        // aria-expanded={open}
                     >
-                        <Avatar sx={{ width: 32, height: 32,padding:"0.5em" }}>{user && initials}</Avatar>
+                        <Avatar sx={{ width: 32, height: 32, padding: "0.5em" }}>{user && initials}</Avatar>
                     </IconButton>
                 </Tooltip>
             </Box>
@@ -171,6 +169,14 @@ export function UserMenu() {
 
                 </form>
                 }
+
+                {user && <Button
+                    style={{ marginInline: "1em", marginBlock: '1em', width: 'min-content' }}
+
+                    variant="contained" onClick={()=>navigate(`/user/${user._id}`)}>
+                    <Avatar />
+                    Profile
+                </Button>}
 
                 <Divider />
 

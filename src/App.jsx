@@ -14,6 +14,7 @@ import { ToyDetails } from './pages/ToyDetails.jsx'
 import { Signup } from './pages/Signup.jsx'
 import { ToyDashbord } from './pages/ToyDashbord.jsx'
 import { AppFooter } from './cmps/AppFooter.jsx'
+import { UserDetails } from './pages/UserDetails.jsx';
 
 function App() {
   return (
@@ -21,12 +22,13 @@ function App() {
       <Router>
         <section className="app main-layout">
           <AppHeader />
-          <Divider className='full'/>
+          <Divider className='full' />
           <main className='main-layout'>
             <Routes>
               <Route element={<Signup />} path="/signup" />
               <Route element={<ToyIndex />} path="/toy" />
               <Route element={<ToyDashbord />} path="/dashbord" />
+              <Route element={<UserDetails />} path="/user/:userId" />
               <Route element={<ToyEdit />} path="/toy/edit" />
               <Route element={<ToyEdit />} path="/toy/edit/:toyId" />
               <Route element={<ToyDetails />} path="/toy/:toyId" />
