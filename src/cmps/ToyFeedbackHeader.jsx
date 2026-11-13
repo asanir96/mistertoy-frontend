@@ -8,11 +8,11 @@ export function ToyFeedbackHeader({ feedback }) {
             display: 'grid',
             rowGap: '0.3em',
             columnGap: '0.7em',
-            gridTemplateColumns: 'max-content max-content 1fr',
+            gridTemplateColumns: 'minmax(0em,max-content) max-content 1fr',
             gridTemplateRows:'min-content min-content auto'
         }}>
 
-        <img className="toy-feedback-img" src={feedback.toy.imgUrl} alt="" />
+        {feedback.toy.imgUrl && <img className="toy-feedback-img" src={feedback.toy.imgUrl} alt="" />}
 
         <h3 className='toy-feedback-header'>{feedback.toy.name}</h3>
 
