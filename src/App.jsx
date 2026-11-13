@@ -9,6 +9,7 @@ import { store } from './store/store.js'
 import { AppHeader } from './cmps/AppHeader.jsx'
 
 import { ToyIndex } from './pages/ToyIndex.jsx'
+import { ReviewIndex } from './pages/ReviewIndex.jsx';
 import { ToyEdit } from './pages/ToyEdit.jsx'
 import { ToyDetails } from './pages/ToyDetails.jsx'
 import { Signup } from './pages/Signup.jsx'
@@ -28,6 +29,7 @@ function App() {
               <Route element={<Signup />} path="/signup" />
               <Route element={<ToyIndex />} path="/toy" />
               <Route element={<ToyDashbord />} path="/dashbord" />
+              <Route element={<ReviewIndex />} path="/review" />
               <Route element={<UserDetails />} path="/user/:userId" />
               <Route element={<ToyEdit />} path="/toy/edit" />
               <Route element={<ToyEdit />} path="/toy/edit/:toyId" />
