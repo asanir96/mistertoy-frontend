@@ -91,7 +91,17 @@ export function ToyDetails() {
                 rating,
                 toyId
             }
-            await reviewService.add(reviewToAdd)
+            const addedReview = await reviewService.add(reviewToAdd)
+
+            setReviews(prev =>
+                prev.map(item =>
+                    item._id === review._id
+                        ? { ...item, ...addedReview }
+                        : item
+                )
+            );
+            console.log('reviews', reviews)
+
             showSuccessMsg('Review saved!')
 
         } catch (err) {
