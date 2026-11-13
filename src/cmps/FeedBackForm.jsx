@@ -26,11 +26,12 @@ export function FeedbackForm({ toy, addFunc, initialValues, validationSchema }) 
             variant="standard"
             onBlur={formik.handleBlur}
             value={formik.values[valueName]}
-            onChange={formik.handleChange}/>
+            onChange={formik.handleChange} />
 
         {valueName === 'txt' &&
             <FeedBackRating
-                formik={formik} />}
+                rating={formik.values.rating}
+                handleChange={formik.handleChange} />}
 
         <Button
             variant="contained"
