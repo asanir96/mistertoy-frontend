@@ -11,6 +11,7 @@
 @import 'pages/ToyEdit.css';
 @import 'pages/ToyIndex.css';
 @import 'pages/Signup.css';
+@import 'pages/Reviews.css';
 @import 'pages/ToyDetails.css';
 @import 'pages/UserDetails.css';
 
@@ -23,6 +24,7 @@
 @import 'cmps/ToyFeedbackHeader.css';
 @import 'cmps/UserFeedbackHeader.css';
 @import 'cmps/ReviewFeedbackHeader.css';
+@import 'cmps/ReviewFilter.css';
 
 @import 'cmps/ToyFilter.css';
 @import 'cmps/ToySort.css';
