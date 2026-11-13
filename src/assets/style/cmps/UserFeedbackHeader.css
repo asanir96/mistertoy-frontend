@@ -1,0 +1,10 @@
+.user-feedback-header{
+    grid-row: 1;
+    grid-column:2;
+}
+.toy-feedback-time{
+    grid-row: 2;
+        grid-column: 2;
+        font-size: 0.8em;
+
+}

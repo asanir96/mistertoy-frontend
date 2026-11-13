@@ -20,6 +20,9 @@
 @import 'cmps/AppHeader.css';
 @import 'cmps/FeedbackList.css';
 @import 'cmps/FeedbackForm.css';
+@import 'cmps/ToyFeedbackHeader.css';
+@import 'cmps/UserFeedbackHeader.css';
+@import 'cmps/ReviewFeedbackHeader.css';
 
 @import 'cmps/ToyFilter.css';
 @import 'cmps/ToySort.css';

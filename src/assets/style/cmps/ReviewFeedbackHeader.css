@@ -1,0 +1,21 @@
+.review-user-info {
+    margin-block-end: 20px;
+}
+
+.review-user-info,
+.review-toy-info {
+    display: grid;
+    grid-template-columns: min-content 1fr min-content;
+    column-gap: 1em;
+}
+
+.review-user-info .review-time {
+    grid-row: 2;
+    grid-column: 2;
+    font-size: 0.8em;
+}
+
+.review-toy-info .toy-img {
+    max-width: 80px;
+    grid-row: 1/4;
+}

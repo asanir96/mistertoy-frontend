@@ -1,0 +1,16 @@
+.toy-feedback-img {
+    width: 100px;
+    grid-row: 1/4;
+}
+
+.toy-feedback-header {
+    grid-row: 1;
+    grid-column: 2;
+
+}
+
+.user-feedback-time {
+    grid-row: 2;
+    grid-column: 2;
+    font-size: 0.8em;
+}
